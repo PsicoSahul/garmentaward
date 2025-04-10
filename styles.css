@@ -1,0 +1,404 @@
+/* ===== Base Styles ===== */
+:root {
+    --primary: #0a0a0a;
+    --secondary: #121212;
+    --accent: #1a1a1a;
+    --gold: #d4af37;
+    --gold-light: #e6c875;
+    --light: #f5f5f5;
+    --highlight: #ffffff;
+    --border-glow: rgba(212, 175, 55, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--primary);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--light);
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ===== Certificate Container ===== */
+.certificate-container {
+    width: 100%;
+    max-width: 900px;
+    perspective: 1000px;
+}
+
+/* ===== Certificate Card ===== */
+.certificate-card {
+    background: linear-gradient(145deg, var(--secondary), var(--accent));
+    border-radius: 12px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(212, 175, 55, 0.1),
+        0 0 30px rgba(212, 175, 55, 0.1);
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(212, 175, 55, 0.2),
+        0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+.certificate-glare {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.01) 40%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.01) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    pointer-events: none;
+    animation: glare 8s infinite;
+}
+
+.certificate-border-animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    pointer-events: none;
+    animation: borderPulse 6s infinite;
+}
+
+.certificate-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: var(--gold);
+    border-style: solid;
+    border-width: 0;
+    pointer-events: none;
+}
+
+.corner-tl {
+    top: 20px;
+    left: 20px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-radius: 12px 0 0 0;
+}
+
+.corner-tr {
+    top: 20px;
+    right: 20px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-radius: 0 12px 0 0;
+}
+
+.corner-bl {
+    bottom: 20px;
+    left: 20px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-radius: 0 0 0 12px;
+}
+
+.corner-br {
+    bottom: 20px;
+    right: 20px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    border-radius: 0 0 12px 0;
+}
+
+/* ===== Header Section ===== */
+.certificate-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.certificate-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+/* ===== Body Section ===== */
+.certificate-body {
+    text-align: center;
+}
+
+.intro-text,
+.award-text,
+.description-text,
+.presented-text {
+    margin-bottom: 1.8rem;
+    color: var(--light);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.recipient-info {
+    margin: 3rem 0;
+    position: relative;
+}
+
+.recipient-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.4rem;
+    color: var(--highlight);
+    margin-bottom: 0.8rem;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.recipient-name::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 3px;
+}
+
+.recipient-details {
+    color: var(--light);
+    margin: 0.8rem 0;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.award-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    color: var(--gold-light);
+    margin: 2rem 0;
+    line-height: 1.4;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.description-text {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* ===== Signature Section ===== */
+.signature-section {
+    margin-top: 4rem;
+}
+
+.date {
+    color: var(--light);
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.signature {
+    margin-top: 3.5rem;
+}
+
+.signature-line {
+    width: 220px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--light), transparent);
+    margin: 0 auto 0.8rem;
+    opacity: 0.7;
+}
+
+.signature-text {
+    color: var(--light);
+    font-style: italic;
+    letter-spacing: 0.5px;
+    font-size: 1.05rem;
+}
+
+/* ===== Animations ===== */
+@keyframes borderPulse {
+    0% { border-color: rgba(212, 175, 55, 0.1); }
+    50% { border-color: rgba(212, 175, 55, 0.4); }
+    100% { border-color: rgba(212, 175, 55, 0.1); }
+}
+
+@keyframes glare {
+    0% { transform: rotate(30deg) translate(-30%, -30%); }
+    50% { transform: rotate(30deg) translate(30%, 30%); }
+    100% { transform: rotate(30deg) translate(-30%, -30%); }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+    .certificate-card {
+        padding: 3.5rem;
+    }
+    
+    .certificate-title {
+        font-size: 2.2rem;
+    }
+    
+    .recipient-name {
+        font-size: 2rem;
+    }
+    
+    .award-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificate-card {
+        padding: 2.5rem;
+    }
+    
+    .certificate-title {
+        font-size: 1.8rem;
+    }
+    
+    .recipient-name {
+        font-size: 1.8rem;
+    }
+    
+    .recipient-name::after {
+        width: 80px;
+    }
+    
+    .award-title {
+        font-size: 1.4rem;
+    }
+    
+    .intro-text,
+    .award-text,
+    .description-text,
+    .presented-text {
+        font-size: 1.05rem;
+    }
+    
+    .certificate-corner {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 15px;
+    }
+    
+    .certificate-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .certificate-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .recipient-name {
+        font-size: 1.6rem;
+    }
+    
+    .recipient-name::after {
+        width: 60px;
+        bottom: -8px;
+    }
+    
+    .award-title {
+        font-size: 1.2rem;
+        margin: 1.5rem 0;
+    }
+    
+    .intro-text,
+    .award-text,
+    .description-text,
+    .presented-text {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .recipient-details {
+        font-size: 0.95rem;
+    }
+    
+    .signature-line {
+        width: 180px;
+    }
+    
+    .certificate-corner {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .certificate-card {
+        padding: 1.8rem 1.2rem;
+    }
+    
+    .certificate-title {
+        font-size: 1.4rem;
+    }
+    
+    .recipient-name {
+        font-size: 1.4rem;
+    }
+    
+    .award-title {
+        font-size: 1.1rem;
+    }
+    
+    .signature-line {
+        width: 150px;
+    }
+}
